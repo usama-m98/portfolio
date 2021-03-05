@@ -1,40 +1,76 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import {
   ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
   theme,
+  Box,
+  Flex,
+  Center,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import Navigation from './Components/Navigation';
+import Content from './Components/Content'
+import ParticleComponent from './Components/ParticleComponent';
+import Main from './Components/Main';
+import HashLoader from "react-spinners/HashLoader";
+import About from './Components/About';
+import Projects from './Components/Project';
+import Container from './Components/Container';
+import Footer from './Components/Footer';
 
 function App() {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 2000)
+  }, [])
   return (
     <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
+      { loading ?
+      <Center height="100vh">
+        <HashLoader 
+        color={"36D7B7"} 
+        loading={loading} 
+        size={80} 
+        />
+      </Center>
+        : 
+      <>
+        <ParticleComponent /> 
+        <Main>
+          <Box as="header">
+            <Navigation />
+          </Box>
+          <Container
+          iD="home"
+          >
+            <Flex
+            height="100vh"
+            alignItems="center"
+            pb="20%"
             >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
+              <Content />            
+            </Flex>
+          </Container>
+          <Container
+          iD="about"
+          >
+            <About />
+          </Container>
+          <Container
+          iD="projects"
+          >
+            <Projects />
+          </Container>
+          <Container
+          iD="contact"
+          >
+            <Footer />
+          </Container>
+        </Main>
+      </>
+      }
     </ChakraProvider>
   );
 }
