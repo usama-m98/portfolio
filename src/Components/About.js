@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Flex, Heading, Text, Image } from '@chakra-ui/react';
-import profile from '../assets/profile.JPEG';
+import profile from '../assets/profile.png';
 
 function About() {
     return (
