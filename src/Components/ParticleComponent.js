@@ -22,7 +22,7 @@ export default () => (
             }
           },
           color: {
-            value: "#ffffff"
+            value: "#000000"
           },
           shape: {
             type: "circle",
@@ -31,7 +31,7 @@ export default () => (
               color: "#000000"
             },
             polygon: {
-              nb_sides: 4
+              nb_sides: 5
             },
           },
           opacity: {
@@ -56,8 +56,8 @@ export default () => (
           },
           line_linked: {
             enable: true,
-            distance: 0,
-            color: "#ffffff",
+            distance: 100,
+            color: "000",
             opacity: 0.3687847739990702,
             width: 0.6413648243462091
           },
